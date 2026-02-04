@@ -21,12 +21,63 @@
         #imageText {
             display: none;
         }
+        .project-details {
+            display: none;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+            margin: 10px auto;
+            max-width: 600px;
+            text-align: left;
+        }
+        .project-details.show {
+            display: block;
+        }
+        .project-content {
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+        }
+        .project-text {
+            flex: 1;
+        }
+        .project-image {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 8px;
+            flex-shrink: 0;
+        }
+        .nested-button {
+            margin: 10px 0;
+            width: auto;
+        }
+        @media (max-width: 600px) {
+            .project-content {
+                flex-direction: column;
+            }
+            .project-image {
+                width: 100%;
+                height: auto;
+            }
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>My Projects</h1>
-        <button onclick="window.location.href='https://www.youtube.com/watch?v=0XKSpm76afU&list=PLZP-6yulPLSEKg_5ms38boKCnaV0sSa6g&index=7'">Simultaneous Driving and Manipulation</button>
+        <button id="sdmButton">Simultaneous Driving and Manipulation</button>
+        <div id="sdmDetails" class="project-details">
+            <h3>Simultaneous Driving and Manipulation</h3>
+            <div class="project-content">
+                <div class="project-text">
+                    <p>This project shows bimanual manipulation capabilities integrated with autonomous driving. The robot has been built from the ground up and integrates two UR5e's and a MiR250. A human machine interface has also been developed to interact with the system.</p>
+                    <button class="nested-button" onclick="window.location.href='https://www.youtube.com/watch?v=0XKSpm76afU&list=PLZP-6yulPLSEKg_5ms38boKCnaV0sSa6g&index=7'">See demonstration</button>
+                </div>
+                <img src="p6_project.png" alt="SDM Robot" class="project-image">
+            </div>
+        </div>
         <button onclick="window.location.href='https://youtu.be/n9jFyYEKBH4'">Self Driving Car</button>
         <button onclick="window.location.href='https://youtube.com/shorts/lwo_DFjXRqk'">Automatic Pill Dispenser</button>
         <button onclick="window.location.href='https://youtube.com/shorts/hbfor8-gyRE'">Long Load Carriage Assistance</button>
@@ -37,11 +88,18 @@
         <button onclick="location.href='index.html'">Back to Home</button>
     </div>
     <script>
+        // Simultaneous Driving and Manipulation toggle
+        document.getElementById("sdmButton").addEventListener("click", function() {
+            let details = document.getElementById("sdmDetails");
+            details.classList.toggle("show");
+        });
+
+        // Original dog image toggle (commented out)
+        /*
         document.getElementById("showImageButton").addEventListener("click", function() {
             let image = document.getElementById("projectImage");
             let text = document.getElementById("imageText");
             let button = document.getElementById("showImageButton");
-            // Toggle display between 'none' and 'block'
             if (image.style.display === "none") {
                 image.style.display = "block";
                 text.style.display = "block";
@@ -52,6 +110,7 @@
                 button.classList.remove("moved-button");
             }
         });
+        */
     </script>    
 </body>
 </html>
