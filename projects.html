@@ -9,31 +9,27 @@
         .container {
             position: relative;
         }
-        #projectImage {
-            display: none;
-            position: absolute;
-            top: 0px; /* Adjust as needed */
-            left: 0px; /* Adjust as needed */
-        }
-        .moved-button {
-            margin-top: 100px; /* Adjust as needed */
-        }
         .close-btn {
             position: absolute;
             top: 10px;
             right: 15px;
+            width: 32px;
+            height: 32px;
+            padding: 0;
+            margin: 0;
             border: none;
             background: none;
-            font-size: 28px;
+            font-size: 20px;
+            line-height: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             cursor: pointer;
             color: #666;
         }
-        
+
         .close-btn:hover {
             color: black;
-        }
-        #imageText {
-            display: none;
         }
         .project-details {
             display: none;
@@ -75,6 +71,7 @@
             display: flex;
             gap: 20px;
             align-items: flex-start;
+            padding: 25px;
         }
         .project-text {
             flex: 1;
@@ -115,10 +112,9 @@
         <div id="fenrisDetails" class="project-details">
             <button class="close-btn" onclick="closeProject('fenrisDetails')">✕</button>
 
-            <h3>Moon Rover: Fenris</h3>
-
             <div class="project-content">
                 <div class="project-text">
+                    <h3>Moon Rover: Fenris</h3>
                     <p>
                         This project presents the first iteration of the ISRU excavation moon rover Fenris.
                         Fenris I is a fully custom rover built as a bachelor's project. It features a tool
@@ -144,10 +140,9 @@
         <div id="sdmDetails" class="project-details">
             <button class="close-btn" onclick="closeProject('sdmDetails')">✕</button>
 
-            <h3>Simultaneous Driving and Manipulation</h3>
-
             <div class="project-content">
                 <div class="project-text">
+                    <h3>Simultaneous Driving and Manipulation</h3>
                     <p>
                         This project shows bimanual manipulation capabilities integrated with autonomous
                         driving. The robot has been built from the ground up and integrates two UR5e's
@@ -179,35 +174,22 @@
         </button>
     </div>
     <script>
-
-
         function openProject(id) {
             document.getElementById(id).classList.add("show");
             document.getElementById("overlay").classList.add("show");
         }
-        
+
         function closeProject(id) {
             document.getElementById(id).classList.remove("show");
             document.getElementById("overlay").classList.remove("show");
         }
 
-        // Original dog image toggle (commented out)
-        /*
-        document.getElementById("showImageButton").addEventListener("click", function() {
-            let image = document.getElementById("projectImage");
-            let text = document.getElementById("imageText");
-            let button = document.getElementById("showImageButton");
-            if (image.style.display === "none") {
-                image.style.display = "block";
-                text.style.display = "block";
-                button.classList.add("moved-button");
-            } else {
-                image.style.display = "none";
-                text.style.display = "none";
-                button.classList.remove("moved-button");
-            }
-        });
-        */
-    </script>    
+        function closeAllProjects() {
+            document.querySelectorAll(".project-details.show").forEach(function (el) {
+                el.classList.remove("show");
+            });
+            document.getElementById("overlay").classList.remove("show");
+        }
+    </script>
 </body>
 </html>
