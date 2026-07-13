@@ -23,14 +23,22 @@
         }
         .project-details {
             display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: min(700px, 90%);
+            max-height: 80vh;
+            overflow-y: auto;
+        
             background: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-            margin: 10px auto;
-            max-width: 600px;
-            text-align: left;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+        
+            z-index: 1000;
         }
+        
         .project-details.show {
             display: block;
         }
