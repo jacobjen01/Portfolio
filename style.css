@@ -1,84 +1,199 @@
-body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background-color: #f4f4f4;
-    margin: 0;
-    font-family: Arial, sans-serif;
-}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Projects</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .container {
+            position: relative;
+        }
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            width: 32px;
+            height: 32px;
+            padding: 0;
+            margin: 0;
+            border: none;
+            background: none;
+            font-size: 20px;
+            line-height: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            color: #666;
+        }
 
-.container {
-    text-align: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
+        .close-btn:hover {
+            color: black;
+            background: none;
+            width: 32px;
+            height: 32px;
+            padding: 0;
+        }
+        .project-details {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: min(700px, 90%);
+            max-height: 80vh;
+            overflow-y: auto;
+        
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+        
+            z-index: 1000;
 
-button {
-    font-size: 1.5rem;
-    padding: 15px 30px;
-    margin: 15px;
-    background-color: #ff5733;
-    color: white;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: 0.3s;
-    display: block;
-    width: 250px;
-    text-align: center;
-}
+            padding: 0;
+            overflow: hidden;
+        }
+        
+        .project-details.show {
+            display: block;
+        }
+        .overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.5);
+            z-index: 999;
+        }
+        
+        .overlay.show {
+            display: block;
+        }
+        
+        .project-content {
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+            padding: 25px;
+        }
+        .project-text {
+            flex: 1;
+        }
+        .project-image {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 8px;
+            flex-shrink: 0;
+        }
+        .nested-button {
+            margin: 10px 0;
+            width: auto;
+        }
+        @media (max-width: 600px) {
+            .project-content {
+                flex-direction: column;
+            }
+            .project-image {
+                width: 100%;
+                height: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="overlay" class="overlay" onclick="closeAllProjects()"></div>
 
-button:hover {
-    background-color: #c70039;
-}
+    <div class="container">
+        <h1>My Projects</h1>
 
-.contact-card {
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-    display: inline-block;
-    text-align: left;
-    margin-top: 20px;
-}
+        <!-- Fenris -->
+        <button onclick="openProject('fenrisDetails')">
+            Moon Rover: Fenris
+        </button>
 
-.contact-card h2 {
-    margin: 0 0 10px;
-    color: #ff5733;
-}
+        <div id="fenrisDetails" class="project-details">
+            <button class="close-btn" onclick="closeProject('fenrisDetails')">✕</button>
 
-.contact-card a {
-    text-decoration: none;
-    color: #333;
-    font-weight: bold;
-}
+            <div class="project-content">
+                <div class="project-text">
+                    <h3>Moon Rover: Fenris</h3>
+                    <p>
+                        This project presents the first iteration of the ISRU excavation moon rover Fenris.
+                        Fenris I is a fully custom rover built as a bachelor's project. It features a tool
+                        for excavation and depositing, a modular design and a sensor tower with LiDAR,
+                        3D camera and a camera ring offering a 360 degree view of its surroundings.
+                    </p>
 
-.contact-card {
-    background: white;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-    text-align: center;
-    position: absolute;
-    top: 75%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    min-width: 300px;
-    display: none;
-    animation: fadeIn 0.3s ease-in-out;
-}
+                    <button class="nested-button"
+                        onclick="window.open('https://www.youtube.com/watch?v=ShYJHLqCTSE&list=PLegupZUmMfuQ','_blank')">
+                        See demonstration
+                    </button>
+                </div>
 
-@keyframes fadeIn {
-    from { opacity: 0; transform: translate(-50%, -55%); }
-    to { opacity: 1; transform: translate(-50%, -50%); }
-}
+                <img src="ROVER.jpg" alt="Fenris Rover" class="project-image">
+            </div>
+        </div>
 
-#projectImage {
-    display: none; /* Keep the image hidden initially */
-    max-width: 100%;
-    height: auto;
-    margin: 0px auto;
-    display: block; /* Centering image */
-}
+        <!-- SDM -->
+        <button onclick="openProject('sdmDetails')">
+            Simultaneous Driving and Manipulation
+        </button>
+
+        <div id="sdmDetails" class="project-details">
+            <button class="close-btn" onclick="closeProject('sdmDetails')">✕</button>
+
+            <div class="project-content">
+                <div class="project-text">
+                    <h3>Simultaneous Driving and Manipulation</h3>
+                    <p>
+                        This project shows bimanual manipulation capabilities integrated with autonomous
+                        driving. The robot has been built from the ground up and integrates two UR5e's
+                        and a MiR250. A human-machine interface has also been developed.
+                    </p>
+
+                    <button class="nested-button"
+                        onclick="window.open('https://www.youtube.com/watch?v=0XKSpm76afU&list=PLZP-6yulPLSEKg_5ms38boKCnaV0sSa6g&index=7','_blank')">
+                        See demonstration
+                    </button>
+                </div>
+
+                <img src="p6_project.png" alt="SDM Robot" class="project-image">
+            </div>
+        </div>
+
+        <button onclick="window.open('https://youtu.be/n9jFyYEKBH4','_blank')">
+            Self Driving Car
+        </button>
+
+        <button onclick="window.open('https://youtube.com/shorts/hbfor8-gyRE','_blank')">
+            Long Load Carriage Assistance
+        </button>
+
+        <br><br>
+
+        <button onclick="location.href='index.html'">
+            Back to Home
+        </button>
+    </div>
+    <script>
+        function openProject(id) {
+            document.getElementById(id).classList.add("show");
+            document.getElementById("overlay").classList.add("show");
+        }
+
+        function closeProject(id) {
+            document.getElementById(id).classList.remove("show");
+            document.getElementById("overlay").classList.remove("show");
+        }
+
+        function closeAllProjects() {
+            document.querySelectorAll(".project-details.show").forEach(function (el) {
+                el.classList.remove("show");
+            });
+            document.getElementById("overlay").classList.remove("show");
+        }
+    </script>
+</body>
+</html>
