@@ -51,6 +51,9 @@
             box-shadow: 0 10px 30px rgba(0,0,0,0.4);
         
             z-index: 1000;
+
+            padding: 0;
+            overflow: hidden;
         }
         
         .project-details.show {
@@ -99,61 +102,84 @@
     </style>
 </head>
 <body>
-    <div id="overlay" class="overlay"></div>
+    <div id="overlay" class="overlay" onclick="closeAllProjects()"></div>
+
     <div class="container">
         <h1>My Projects</h1>
+
+        <!-- Fenris -->
         <button onclick="openProject('fenrisDetails')">
             Moon Rover: Fenris
         </button>
+
         <div id="fenrisDetails" class="project-details">
-            <button class="close-btn" onclick="closeProject('fenrisDetails')">
-                &times;
-            </button>
+            <button class="close-btn" onclick="closeProject('fenrisDetails')">✕</button>
+
             <h3>Moon Rover: Fenris</h3>
+
             <div class="project-content">
                 <div class="project-text">
-                    <p>This project presents the first iteration of the ISRU excavation moon rover Fenris. Fenris I is a fully custom rover built as a bachelors project. It features a tool for excavation and depositing, a modular design and a sensor tower with LiDAR, 3D camera and a camera ring offering a 360 degree view of surroungings.</p>
-                    <button class="nested-button" onclick="window.location.href='https://www.youtube.com/watch?v=ShYJHLqCTSE&list=PLegupZUmMfuQ'">See demonstration</button>
+                    <p>
+                        This project presents the first iteration of the ISRU excavation moon rover Fenris.
+                        Fenris I is a fully custom rover built as a bachelor's project. It features a tool
+                        for excavation and depositing, a modular design and a sensor tower with LiDAR,
+                        3D camera and a camera ring offering a 360 degree view of its surroundings.
+                    </p>
+
+                    <button class="nested-button"
+                        onclick="window.open('https://www.youtube.com/watch?v=ShYJHLqCTSE&list=PLegupZUmMfuQ','_blank')">
+                        See demonstration
+                    </button>
                 </div>
-                <img src="ROVER.jpg" alt="SDM Robot1" class="project-image">
+
+                <img src="ROVER.jpg" alt="Fenris Rover" class="project-image">
             </div>
         </div>
+
+        <!-- SDM -->
         <button onclick="openProject('sdmDetails')">
             Simultaneous Driving and Manipulation
         </button>
+
         <div id="sdmDetails" class="project-details">
-            <button class="close-btn" onclick="closeProject('sdmDetails')">
-                &times;
-            </button>
+            <button class="close-btn" onclick="closeProject('sdmDetails')">✕</button>
+
             <h3>Simultaneous Driving and Manipulation</h3>
+
             <div class="project-content">
                 <div class="project-text">
-                    <p>This project shows bimanual manipulation capabilities integrated with autonomous driving. The robot has been built from the ground up and integrates two UR5e's and a MiR250. A human machine interface has also been developed to interact with the system.</p>
-                    <button class="nested-button" onclick="window.location.href='https://www.youtube.com/watch?v=0XKSpm76afU&list=PLZP-6yulPLSEKg_5ms38boKCnaV0sSa6g&index=7'">See demonstration</button>
+                    <p>
+                        This project shows bimanual manipulation capabilities integrated with autonomous
+                        driving. The robot has been built from the ground up and integrates two UR5e's
+                        and a MiR250. A human-machine interface has also been developed.
+                    </p>
+
+                    <button class="nested-button"
+                        onclick="window.open('https://www.youtube.com/watch?v=0XKSpm76afU&list=PLZP-6yulPLSEKg_5ms38boKCnaV0sSa6g&index=7','_blank')">
+                        See demonstration
+                    </button>
                 </div>
+
                 <img src="p6_project.png" alt="SDM Robot" class="project-image">
             </div>
         </div>
 
-        <button onclick="window.location.href='https://youtu.be/n9jFyYEKBH4'">Self Driving Car</button>
-        <button onclick="window.location.href='https://youtube.com/shorts/hbfor8-gyRE'">Long Load Carriage Assistance</button>
-        <!-- <button id="showImageButton">My dog</button>
-        <img id="projectImage" src="aiko.jpg" alt="Project Image">
-        <p id="imageText">Not a project. Just a good boy!<br>More projects coming soon...</p> -->
+        <button onclick="window.open('https://youtu.be/n9jFyYEKBH4','_blank')">
+            Self Driving Car
+        </button>
+
+        <button onclick="window.open('https://youtube.com/shorts/hbfor8-gyRE','_blank')">
+            Long Load Carriage Assistance
+        </button>
+
         <br><br>
-        <button onclick="location.href='index.html'">Back to Home</button>
+
+        <button onclick="location.href='index.html'">
+            Back to Home
+        </button>
     </div>
     <script>
-        // Simultaneous Driving and Manipulation toggle
-        document.getElementById("sdmButton").addEventListener("click", function() {
-            let details = document.getElementById("sdmDetails");
-            details.classList.toggle("show");
-        });
 
-        document.getElementById("fenrisButton").addEventListener("click", function() {
-            let details = document.getElementById("fenrisDetails");
-            details.classList.toggle("show");
-        });
 
         function openProject(id) {
             document.getElementById(id).classList.add("show");
