@@ -18,6 +18,20 @@
         .moved-button {
             margin-top: 100px; /* Adjust as needed */
         }
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            border: none;
+            background: none;
+            font-size: 28px;
+            cursor: pointer;
+            color: #666;
+        }
+        
+        .close-btn:hover {
+            color: black;
+        }
         #imageText {
             display: none;
         }
@@ -88,7 +102,9 @@
     <div id="overlay" class="overlay"></div>
     <div class="container">
         <h1>My Projects</h1>
-        <button id="fenrisButton">Moon Rover: Fenris</button>
+        <button onclick="openProject('fenrisDetails')">
+            Moon Rover: Fenris
+        </button>
         <div id="fenrisDetails" class="project-details">
             <button class="close-btn" onclick="closeProject('fenrisDetails')">
                 &times;
@@ -102,9 +118,11 @@
                 <img src="ROVER.jpg" alt="SDM Robot1" class="project-image">
             </div>
         </div>
-        <button id="sdmButton">Simultaneous Driving and Manipulation</button>
+        <button onclick="openProject('sdmDetails')">
+            Simultaneous Driving and Manipulation
+        </button>
         <div id="sdmDetails" class="project-details">
-            <button class="close-btn" onclick="closeProject('fenrisDetails')">
+            <button class="close-btn" onclick="closeProject('sdmDetails')">
                 &times;
             </button>
             <h3>Simultaneous Driving and Manipulation</h3>
@@ -136,6 +154,16 @@
             let details = document.getElementById("fenrisDetails");
             details.classList.toggle("show");
         });
+
+        function openProject(id) {
+            document.getElementById(id).classList.add("show");
+            document.getElementById("overlay").classList.add("show");
+        }
+        
+        function closeProject(id) {
+            document.getElementById(id).classList.remove("show");
+            document.getElementById("overlay").classList.remove("show");
+        }
 
         // Original dog image toggle (commented out)
         /*
