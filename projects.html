@@ -42,6 +42,18 @@
         .project-details.show {
             display: block;
         }
+        .overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.5);
+            z-index: 999;
+        }
+        
+        .overlay.show {
+            display: block;
+        }
+        
         .project-content {
             display: flex;
             gap: 20px;
@@ -73,10 +85,14 @@
     </style>
 </head>
 <body>
+    <div id="overlay" class="overlay"></div>
     <div class="container">
         <h1>My Projects</h1>
         <button id="fenrisButton">Moon Rover: Fenris</button>
         <div id="fenrisDetails" class="project-details">
+            <button class="close-btn" onclick="closeProject('fenrisDetails')">
+                &times;
+            </button>
             <h3>Moon Rover: Fenris</h3>
             <div class="project-content">
                 <div class="project-text">
@@ -88,6 +104,9 @@
         </div>
         <button id="sdmButton">Simultaneous Driving and Manipulation</button>
         <div id="sdmDetails" class="project-details">
+            <button class="close-btn" onclick="closeProject('fenrisDetails')">
+                &times;
+            </button>
             <h3>Simultaneous Driving and Manipulation</h3>
             <div class="project-content">
                 <div class="project-text">
